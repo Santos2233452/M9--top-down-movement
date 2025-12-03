@@ -1,24 +1,38 @@
 extends CharacterBody2D
 
-@onready var sprite_2d: Sprite2D = %Sprite2D
-@onready var camera_2d: Camera2D = %Camera2D
+const RUNNER_DOWN = preload("uid://c0i1ik45p7rhh")
+const RUNNER_DOWN_RIGHT = preload("uid://cst3aklarj68")
+const RUNNER_RIGHT = preload("uid://b4etxv4c5w1mq")
+const RUNNER_UP = preload("uid://dtrvq16cx035")
+const RUNNER_UP_RIGHT = preload("uid://c7x3s5c2r5l86")
 
-## Closest possible value. Higher is closer
-@export var max_zoom_factor := 1.0
-## Farthest possible value. Lower is farther
-@export var min_zoom_factor := 0.7
-## Maximum speed attained by the ship
-@export var max_speed := 1000.0
+const UP_RIGHT = Vector2.UP + Vector2.RIGHT
+const UP_LEFT = Vector2.UP + Vector2.LEFT
+const DOWN_RIGHT = Vector2.DOWN + Vector2.RIGHT
+const DOWN_LEFT = Vector2.DOWN + Vector2.LEFT
 
-var direction := Vector2.ZERO
+var max_speed := 600.0
 
-func _physics_process(delta: float) -> void:
-	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = velocity.lerp(direction * max_speed, 0.05)
-	sprite_2d.rotation = velocity.angle()
+@onready var _skin: Sprite2D = %Skin
+
+
+func _physics_process(_delta: float) -> void:
+	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = direction * max_speed
 	move_and_slide()
-	
-	# widen camera zoom depending on speed
-	var speed_fraction := velocity.length() / max_speed
-	var zoom_fraction := lerpf(min_zoom_factor, max_zoom_factor, 1.0 - speed_fraction)
-	camera_2d.zoom = camera_2d.zoom.lerp(Vector2.ONE * zoom_fraction, 0.2)
+
+	var direction_discrete := direction.sign()
+	match direction_discrete:
+		Vector2.RIGHT, Vector2.LEFT:
+			_skin.texture = RUNNER_RIGHT
+		Vector2.UP:
+			_skin.texture = RUNNER_UP
+		Vector2.DOWN:
+			_skin.texture = RUNNER_DOWN
+		UP_RIGHT, UP_LEFT:
+			_skin.texture = RUNNER_UP_RIGHT
+		DOWN_RIGHT, DOWN_LEFT:
+			_skin.texture = RUNNER_DOWN_RIGHT
+
+	if direction_discrete.length() > 0:
+		_skin.flip_h = direction.x < 0.0

@@ -8,7 +8,8 @@
 [node name="Runner" type="CharacterBody2D"]
 script = ExtResource("1_f7b3c")
 
-[node name="skin" type="Sprite2D" parent="."]
+[node name="Skin" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(95, 75)
 texture = ExtResource("2_5pwe8")
 
