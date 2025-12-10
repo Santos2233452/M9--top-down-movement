@@ -1,8 +1,8 @@
-RunnerVisual
 Camera2D
+CollisionShape2D
+RunnerVisual
 Sprite2D
 StaticBody2D
 CollisionPolygon2D
-CollisionShape2D
 Node2D
 CharacterBody2D
