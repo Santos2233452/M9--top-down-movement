@@ -1,4 +1,4 @@
-res://runner.tscn
+res://lessons/game.tscn
 res://addons/gdpractice/assets/theme.tres
-res://runner.gd
-res://assets/practice_assets/practice_ship.gd
+res://lessons/simple_obstacle.tscn..tscn
+res://assets/runner/runner_visual.gd
