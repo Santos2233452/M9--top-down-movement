@@ -1,8 +1,10 @@
+GPUParticles2D
+Node2D
+Sprite2D
+SubViewport
 Camera2D
 CollisionShape2D
 RunnerVisual
-Sprite2D
 StaticBody2D
 CollisionPolygon2D
-Node2D
 CharacterBody2D
