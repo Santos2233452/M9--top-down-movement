@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct1w8a222rkr1"]
+
+[ext_resource type="Theme" uid="uid://cdcyvsn1fp8wa" path="res://assets/countdown/count_down_theme.tres" id="1_wp2lp"]
+[ext_resource type="Script" uid="uid://57e8080cpukf" path="res://assets/countdown/count_down.gd" id="2_v75oo"]
+
+[node name="CountDown" type="Label"]
+offset_right = 40.0
+offset_bottom = 219.0
+theme = ExtResource("1_wp2lp")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_v75oo")
+metadata/_custom_type_script = "uid://57e8080cpukf"
